@@ -1,0 +1,23 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "algorithm challenges",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rlin415/Toy-Problems.git"
+  },
+  "author": "Robert Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rlin415/Toy-Problems/issues"
+  },
+  "homepage": "https://github.com/Rlin415/Toy-Problems#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
