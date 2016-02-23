@@ -1,6 +1,7 @@
 "use strict";
 
 /*
+
 You are given two strings, A and B. Find if there is a substring that appears in both A and B.
 
 Sample Input: twoStrings(hello, world)
@@ -18,7 +19,16 @@ For the 2nd test case, hi and world do not have a common substring, hence the an
 
 
 function twoStrings(str1, str2) {
-  
+  let str1Chars = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    str1Chars[str1[i]] = str1[i];
+  }
+
+  for (let i = 0; i < str2.length; i++) {
+    if (str1Chars[str2[i]]) return 'YES';
+  }
+  return 'NO';
 }
 
 module.exports = twoStrings;
