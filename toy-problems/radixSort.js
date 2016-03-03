@@ -15,29 +15,35 @@ Input is not ordered from least to greatest. After using radix sort, the output 
 
 function radixSort(arr) {
   if (!Array.isArray(arr)) throw 'Error, input is not an array!';
+  let counter = [[]];
   let longest = findLongest(arr);
-  let holder = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let tempArr = [];
-
-  for (let i = longest; i > 0; i--) {
-    arr.forEach((num) => {
-      let subNum = num[longest - 1];
-      if (!subNum) holder[0]++;
-      else holder[subNum]++;
-    });
-    holder.forEach((num, i, arr) => {
-      let nextNum = arr[i + 1];
-      if (nextNum ===  undefined) return;
-      arr[i + 1] = num + nextNum;
-    });
+  let mod = 10;
+  let dev = 1;
+  for (let i = 0; i < longest; i++, dev *= 10, mod *= 10) {
+      for(let j = 0; j < arr.length; j++) {
+          let bucket = parseInt((arr[j] % mod) / dev);
+        if(counter[bucket] == null) {
+          counter[bucket] = [];
+        }
+        counter[bucket].push(arr[j]);
+      }
+      let pos = 0;
+      for(let j = 0; j < counter.length; j++) {
+          let value = null;
+        if(counter[j]!= null) {
+          while ((value = counter[j].shift()) != null) {
+              arr[pos++] = value;
+          }
+        }
+      }
   }
+  return arr;
 }
 
 function findLongest(arr) {
   let longest = 1;
   arr.forEach((num, i) => {
     num = num.toString();
-    arr[i] = num;
     if (num.length > longest) longest = num.length;
   });
   return longest;
